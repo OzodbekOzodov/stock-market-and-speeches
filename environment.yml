@@ -1,0 +1,22 @@
+name: master_thesis_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - jupyter
+  - tensorflow
+  - keras
+  - pytorch
+  - transformers
+  - nltk
+  - gensim
+  # - finbert
+  - statsmodels
+  - pandas-datareader
+  - fredapi
