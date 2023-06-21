@@ -16,7 +16,15 @@ dependencies:
   - transformers
   - nltk
   - gensim
-  # - finbert
   - statsmodels
   - pandas-datareader
   - fredapi
+  # - finbert
+  - pip:
+    - nltk
+    - transformers
+    - matplotlib
+    - seaborn
+    - graphviz
+    - pydot
+    - yfinance
