@@ -19,6 +19,7 @@ dependencies:
   - transformers
   - tokenizers
   - sentencepiece
+  - yfinance
   - pip:
     - torch
     - torchtext
