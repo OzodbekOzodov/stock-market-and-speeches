@@ -1,24 +1,35 @@
-import nltk
+# import nltk
 from transformers import pipeline
 
-def split_text(text, max_words=512):
-    words = text.split()
-    if len(words) <= max_words:
-        return [text]
+import nltk
+
+def split_text(text, max_words=512, max_seq_length=512):
+    sentences = nltk.sent_tokenize(text)
+    chunks = []
+    current_chunk = ""
     
-    split_points = [i for i, word in enumerate(words) if word.endswith(('.', '!', '?'))]
-    if not split_points:
-        return [text[:max_words]]
-    
-    best_split = 0
-    for i, split_point in enumerate(split_points):
-        if split_point <= max_words:
-            best_split = i
+    for sentence in sentences:
+        words = sentence.split()
+        if len(current_chunk) + len(words) <= max_words:
+            current_chunk += sentence + " "
         else:
-            break
+            while words:
+                if len(current_chunk.split()) + len(words) > max_words:
+                    chunks.append(current_chunk.strip())
+                    current_chunk = ""
+                else:
+                    current_chunk += " ".join(words[:max_words - len(current_chunk.split())]) + " "
+                    chunks.append(current_chunk.strip())
+                    current_chunk = ""
+                words = words[max_words:]
     
-    split_index = split_points[best_split]
-    return [text[:split_index + 1]] + split_text(text[split_index + 1:], max_words)
+    if current_chunk:
+        chunks.append(current_chunk.strip())
+    
+    chunks = [chunk for chunk in chunks if len(chunk.split()) <= max_seq_length]
+    
+    return chunks
+
 
 
 
