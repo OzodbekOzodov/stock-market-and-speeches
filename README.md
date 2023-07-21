@@ -8,3 +8,9 @@ The research aims to obtain accurate sentiments from financial speeches using tr
 
 This project is licensed under the [MIT License](LICENSE).
 
+
+
+Literature:
+
+https://huggingface.co/blog/autoformer
+
